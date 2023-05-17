@@ -3,19 +3,10 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .serializers import EmailAuthSerializer
-from .views import (
-    CategoryViewSet,
-    CommentViewSet,
-    ConfirmationCodeView,
-    GenreViewSet,
-    ReviewViewSet,
-    TitleViewSet,
-    UserViewSet,
-)
+from .views import (CategoryViewSet, CommentViewSet, ConfirmationCodeView,
+                    GenreViewSet, ReviewViewSet, TitleViewSet, UserViewSet)
 
 app_name = 'api_v1'
-
-
 router = DefaultRouter()
 router.register('titles', TitleViewSet, basename='titles')
 router.register('categories', CategoryViewSet, basename='categories')
