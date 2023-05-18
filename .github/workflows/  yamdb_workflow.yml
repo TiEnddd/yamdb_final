@@ -53,9 +53,9 @@ jobs:
         # Пуш образа в Docker Hub 
         uses: docker/build-push-action@v2 
         with:
-          context: api_yamdb
+          context: api_yamdb/Dockerfile
           push: true
-          tags: baisefuel/infra_actions:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/yamdb:latest
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
