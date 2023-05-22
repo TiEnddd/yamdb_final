@@ -1,5 +1,8 @@
 # API для проекта YaMDB в контейнере Docker
-![API for YaMDB project workflow](https://github.com/TiEnddd/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg )
+![example workflow](https://github.com/GlebOlegovich/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+
+### Адрес сайта
+http://158.160.63.1/redoc/
 
 ### Возможности проекта
 Представляет собой расширение возможностей проекта YaMDB для совершения удаленных операций.   
@@ -9,6 +12,8 @@
 Сайт не предоставляет прямой доступ или ссылки для ознакомления непосредственно с произведениями.
 ### Расширение функциональности
 Функционал проекта адаптирован для использования PostgreSQL и развертывания в контейнерах Docker. Используются инструменты CI и CD.
+
+Проект развернут по адресу: http://localhost:8000/redoc/
 
 Может быть недоступно в связи с прекращением обслуживания.
 ## Технологии
@@ -82,4 +87,53 @@ docker-compose up -d --build
 ```bash
 docker-compose exec web python manage.py dumpdata > fixtures.json
 ```
-
+* Пример POST-запроса<br/>   
+    Регистрация нового пользователя и получение `confirmation_code`. Доступно без токена.  
+    `POST http://127.0.0.1:8000/api/v1/auth/signup/`
+    ```json
+    {
+        "email": "user@example.com",
+        "username": "string"
+    }
+    ```
+* Пример ответа:
+    ```json
+    {
+        "email": "string",
+        "username": "string"
+    }
+    ```
+  В проекте настроен filebased способ отправки почты, confirmation_code будет находится в папке send_email базовой директории.
+* Получение JWT-токена в обмен на `username` и `confirmation_code`. Доступно без токена.  
+    `POST http://127.0.0.1:8000/api/v1/auth/token/`
+    ```json
+    {
+        "username": "string",
+        "confirmation_code": "string"
+    }
+    ```
+* Пример ответа:
+    ```json
+    {
+        "token": "string"
+    }
+    ```
+  В дальнейшем token передаётся в Header: Bearer
+* Создание отзыва к произведению. Необходим токен.  
+    `POST http://127.0.0.1:8000/api/v1/titles/{title_id}/reviews/`
+    ```json
+    {
+        "text": "string",
+        "score": 1
+    }
+    ```
+* Пример ответа:
+    ```json
+    {
+        "id": 0,
+        "text": "string",
+        "author": "string",
+        "score": 1,
+        "pub_date": "2019-08-24T14:15:22Z"
+    }
+    ```
