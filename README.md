@@ -2,7 +2,7 @@
 ![example workflow](https://github.com/GlebOlegovich/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 ### Адрес сайта
-http://158.160.63.1/redoc/
+http:/51.250.10.45/redoc/
 
 ### Возможности проекта
 Представляет собой расширение возможностей проекта YaMDB для совершения удаленных операций.   
